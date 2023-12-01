@@ -11,7 +11,7 @@
         }
         section {
             width: 1200px;
-            margin: 10px auto;
+            margin: 50px auto;
             border-top: 1px #aaa solid;
         }
         .title{
@@ -47,6 +47,9 @@
         .container {
             display: flex;
             gap: 30px;
+            
+        }
+        section:nth-child(even) .container{
             flex-direction: row-reverse;
         }
         a.main-part {
@@ -62,12 +65,10 @@
         }
         .classify {
             font-size: 12px;
-            line-height: 20px;
+            height: 18px; /* 強制保留頂部p的空白區即使沒有內容 */
             margin: 10px 5px;
         }
-        .classify::before {
-            content: '';
-            background-image: url(https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_ocean.svg);
+        .classify::before{
             background-size: contain;
             display: inline-block;
             border: 1px rgba(0, 153, 255, 0.241) solid;
@@ -77,12 +78,19 @@
             height: 14px;
             transform: translateY(20%);
         }
-        .sub-part .classify::before {
+        section:first-child .main-part .classify::before {
+            content: '';
+            background-image: url(https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_ocean.svg);
+        }
+        section:first-child .card:first-child .classify::before {
+            content: '';
             background-image: url(https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_other.svg);
         }
         .container img {
             width: 100%;
             border-radius: 10px;
+            aspect-ratio: 16 / 10; /* 定義element box的寬高比例 */
+            object-fit: cover;    /* 指定可替換元素如img的內容如何對應塞進容器的寬高 */ 
         }
         .main-part .text {
             display: flex;
@@ -99,24 +107,22 @@
         .sub-part .card-group {
             flex: 1;
             display: grid;
-            gap: 10px;
+            gap: 5px 20px;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(2, 1fr); /* 兩個行，每個行的高度均為1fr */
+            /* grid-template-rows: repeat(2, 1fr); /* 兩個行，每個行的高度均為1fr，註解的原因是它會強制讓大家都一樣使空白處很多 */
         }
         .card-group .card{
             display: flex;
             flex-direction: column;
-            padding: 5px;
         }
         .card h3 {
-            font-size: 20px;
+            font-size: 18px;
         }
         span.date {
             margin-top: auto;
             display: block;
             font-size: 12px;
-            line-height: 30px; /* 騰出高度 */
-            
+            line-height: 30px;
         }
         
     </style>
@@ -142,10 +148,10 @@
                 </div>
             </a>
             <div class="sub-part">
-                <p class="classify">その他</p>
                 <div class="card-group">
 
                     <div class="card">
+                        <p class="classify">その他</p>
                         <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/08/%E7%B1%B3%E5%9B%BD%E3%83%8F%E3%83%AF%E3%82%A4%E5%B7%9E%E3%83%9E%E3%82%A6%E3%82%A4%E9%83%A1%E3%83%9E%E3%82%A6%E3%82%A4%E5%B3%B6%E3%81%AE%E5%B1%B1%E7%81%AB%E4%BA%8B%E6%95%91%E6%8F%B4%E9%87%91-640-%C3%97-427-px-1.png" alt="">
                         <h3>マウイ島の山火事救援金、日本円で受付開始</h3>
                         <span class="date">2023.08.18</span>
@@ -153,18 +159,21 @@
 
 
                     <div class="card">
+                        <p class="classify"></p>
                         <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/07/image-1024x683.png" alt="">
                         <h3>2023年7月後半～9月にハワイで開催されるカルチャーイベント</h3>
                         <span class="date">2023.07.20</span>
                     </div>
 
                     <div class="card">
+                        <p class="classify"></p>
                         <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/06/MGF-2022-PLHF-Halau-Hula-Ka-Noeau-Kumu-Hula-Michael-Pili-Pang-7-16-22-DSC_8772.jpg" alt="">
                         <h3>第46回プリンスロット•フラフェスティバル、7月に開催</h3>
                         <span class="date">2023.06.22</span>
                     </div>
 
                     <div class="card">
+                        <p class="classify"></p>
                         <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2021/04/Screenshot-107.png" alt="">
                         <h3>今年もアースデーにビーチクリーンを開催！</h3>
                         <span class="date">2023.04.18</span>
@@ -174,5 +183,114 @@
         </div>
     </section>
 
+    <section>
+        <h2 class="title">
+            企業の取組み
+            <span>Corporate Initiatives</span>
+            <a href="">すべて見る</a>
+        </h2>
+        <div class="container">
+            <a href="" class="main-part">
+                <p class="classify">ジャルパック</p>
+                <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/11/12-Group-photo.jpeg" alt="">
+                <div class="text">
+                    <h3>【チームJALハワイ】ビーチクリーンアップ活動で地元コミュニティに貢献</h3>
+                    <p>
+                        JALハワイ支店とJALPAK International Hawaiiで構成された“チームJALハワイ”は、ハワイ州観光局が提唱する「マラマハワイ～ハワイを思
+                        <span class="date">2023.11.09</span>
+                    </p>
+                    
+                </div>
+            </a>
+            <div class="sub-part">
+                <div class="card-group">
+
+                    <div class="card">
+                        <p class="classify"></p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/07/278637300_1713831695616085_8588043877096982703_n.jpg" alt="">
+                        <h3>廃棄された漁網を服に生まれ変わらせる！海を守ろうと活動する人々が主役のドキュメンタリーを作るプロジェクトをサポートしませんか？</h3>
+                        <span class="date">2023.08.18</span>
+                    </div>
+
+
+                    <div class="card">
+                        <p class="classify"></p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/07/image-1024x683.png" alt="">
+                        <h3>2023年7月後半～9月にハワイで開催されるカルチャーイベント</h3>
+                        <span class="date">2023.07.20</span>
+                    </div>
+
+                    <div class="card">
+                        <p class="classify">オラカイ株式会社</p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/06/MGF-2022-PLHF-Halau-Hula-Ka-Noeau-Kumu-Hula-Michael-Pili-Pang-7-16-22-DSC_8772.jpg" alt="">
+                        <h3>第46回プリンスロット•フラフェスティバル、7月に開催</h3>
+                        <span class="date">2023.06.22</span>
+                    </div>
+
+                    <div class="card">
+                        <p class="classify">ザ・リッツカールトン・レジデンス・ワイキキ</p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2021/04/Screenshot-107.png" alt="">
+                        <h3>今年もアースデーにビーチクリーンを開催！</h3>
+                        <span class="date">2023.04.18</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="title">
+            ハワイ州観光局の取組み
+            <span>Hawai‘i Tourism Japan Initiatives</span>
+            <a href="">すべて見る</a>
+        </h2>
+        <div class="container">
+            <a href="" class="main-part">
+                <p class="classify">ハワイ州観光局</p>
+                <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/10/10187.tif.jpg" alt="">
+                <div class="text">
+                    <h3>【マウイ郡、ハワイ島、海洋生物に影響与える日焼け止めの流通禁止を発表</h3>
+                    <p>
+                        2022年10月1日からマウイ郡ノンミネラルの日焼け止めの流通・販売禁止条例を施行 マウイ郡の条例5306号により、2022年10月1日からマウイ島、ラナイ島、
+                        <span class="date">2023.11.09</span>
+                    </p>
+                    
+                </div>
+            </a>
+            <div class="sub-part">
+                <div class="card-group">
+
+                    <div class="card">
+                        <p class="classify">ハワイ州観光局</p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/10/22100108362488961.jpeg" alt="">
+                        <h3>TBSミニ番組　マラマ〜新しいハワイ旅〜</h3>
+                        <span class="date">2023.08.18</span>
+                    </div>
+
+
+                    <div class="card">
+                        <p class="classify">ハワイ州観光局</p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/06/%E5%90%8D%E7%A7%B0%E6%9C%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-2.png" alt="">
+                        <h3>ハワイ州観光局、マラマハワイリツイートキャンペーン第2弾を実施！～動画の楽曲を作詞された倉木麻衣さんのbillboard classics主催シンフォニックコンサート3公演を合計30組60名様にご招待！～</h3>
+                        <span class="date">2023.07.20</span>
+                    </div>
+
+                    <div class="card">
+                        <p class="classify">ハワイ州観光局</p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2022/04/22042208064245342.jpg" alt="">
+                        <h3>ハワイ州観光局、モデルのローラさんをマラマハワイ・アンバサダーに任命</h3>
+                        <span class="date">2023.06.22</span>
+                    </div>
+
+                    <div class="card">
+                        <p class="classify">ハワイ州観光局</p>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2021/12/MalamaHawaii.jpg" alt="">
+                        <h3>ハワイ州観光局、マラマハワイ動画のリツイートキャンペーンを実施～動画のために書き下ろした『Sea wind』が収録された倉木麻衣さんサイン入りCDを10名様に贈呈！～</h3>
+                        <span class="date">2023.04.18</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
