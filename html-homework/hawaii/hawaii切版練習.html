@@ -4,6 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        section {
+            width: 1200px;
+            margin: 10px auto;
+            border-top: 1px #aaa solid;
+        }
+        .title{
+            font-size: 32px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .title span {
+            font-size: 12px;
+            color: #aaa;
+            margin-left: 10px;
+        }
+        .title a{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            color: red;
+            font-size: 12px;
+            text-decoration: none;
+        } 
+        .title a::after{
+            content: '';
+            background-image: url(https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/right_arrow_short.svg);
+            background-size: contain;
+            display: inline-block;
+            border: 1px red solid;
+            margin-left: 3px;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            transform: translateY(20%);
+        }
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-direction: row-reverse;
+        }
+        a.main-part {
+            display: block;
+            flex: 1;
+            text-decoration: none;
+            color: black;
+        }
+        .sub-part {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .classify {
+            font-size: 12px;
+            line-height: 20px;
+            margin: 10px 5px;
+        }
+        .classify::before {
+            content: '';
+            background-image: url(https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_ocean.svg);
+            background-size: contain;
+            display: inline-block;
+            border: 1px rgba(0, 153, 255, 0.241) solid;
+            margin-right: 3px;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            transform: translateY(20%);
+        }
+        .sub-part .classify::before {
+            background-image: url(https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_other.svg);
+        }
+        .container img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .main-part .text {
+            display: flex;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        .text h3 {
+            flex: 2;
+            font-size: 28px;
+        }
+        .text p {
+            flex: 3;
+        }
+        .sub-part .card-group {
+            flex: 1;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(2, 1fr); /* 兩個行，每個行的高度均為1fr */
+        }
+        .card-group .card{
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+        }
+        .card h3 {
+            font-size: 20px;
+        }
+        span.date {
+            margin-top: auto;
+            display: block;
+            font-size: 12px;
+            line-height: 30px; /* 騰出高度 */
+            
+        }
+        
+    </style>
 </head>
 <body>
     <section>
@@ -14,29 +130,49 @@
         </h2>
         <div class="container">
             <a href="" class="main-part">
-                <p class="classify"></p>
-                <img src="https://www.allhawaii.jp/malamahawaii/travelers_can_do/3255/" alt="">
+                <p class="classify">海</p>
+                <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/11/230820_Puerto-Morelos-Limones_LJM07316-2048x1369.jpg" alt="">
                 <div class="text">
                     <h3>11月はサンゴ白化啓発月間　〜日常でできること〜</h3>
-                    <p>世界のサンゴ礁を救うことを使命としている環境NGO団体コーラル・リーフ・アライアンス（The Coral Reef Alliance）は、2023年11月を「サ</p>
-                    <span class="date">2023.11.09</span>
+                    <p>
+                        世界のサンゴ礁を救うことを使命としている環境NGO団体コーラル・リーフ・アライアンス（The Coral Reef Alliance）は、2023年11月を「サ
+                        <span class="date">2023.11.09</span>
+                    </p>
+                    
                 </div>
             </a>
             <div class="sub-part">
-                <p class="classify"></p>
+                <p class="classify">その他</p>
                 <div class="card-group">
 
                     <div class="card">
-                        <img src="" alt="">
-                        <h3></h3>
-                        <span class="date"></span>
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/08/%E7%B1%B3%E5%9B%BD%E3%83%8F%E3%83%AF%E3%82%A4%E5%B7%9E%E3%83%9E%E3%82%A6%E3%82%A4%E9%83%A1%E3%83%9E%E3%82%A6%E3%82%A4%E5%B3%B6%E3%81%AE%E5%B1%B1%E7%81%AB%E4%BA%8B%E6%95%91%E6%8F%B4%E9%87%91-640-%C3%97-427-px-1.png" alt="">
+                        <h3>マウイ島の山火事救援金、日本円で受付開始</h3>
+                        <span class="date">2023.08.18</span>
                     </div>
 
+
+                    <div class="card">
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/07/image-1024x683.png" alt="">
+                        <h3>2023年7月後半～9月にハワイで開催されるカルチャーイベント</h3>
+                        <span class="date">2023.07.20</span>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2023/06/MGF-2022-PLHF-Halau-Hula-Ka-Noeau-Kumu-Hula-Michael-Pili-Pang-7-16-22-DSC_8772.jpg" alt="">
+                        <h3>第46回プリンスロット•フラフェスティバル、7月に開催</h3>
+                        <span class="date">2023.06.22</span>
+                    </div>
+
+                    <div class="card">
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/uploads/2021/04/Screenshot-107.png" alt="">
+                        <h3>今年もアースデーにビーチクリーンを開催！</h3>
+                        <span class="date">2023.04.18</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <section></section>
-    <section></section>
+
 </body>
 </html>
