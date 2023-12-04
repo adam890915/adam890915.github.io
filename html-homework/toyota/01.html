@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            display: flex;
+            align-items: center;
+        }
+        .wrap::before {
+            content: '▶';
+            color: white;
+            background-color: #f0a;
+            position: relative;
+            inset: auto auto auto 10px;
+        }
+        .wrap:hover{
+            flex-direction: row-reverse;
+        }
+        .wrap:hover::before {
+            inset: auto 10px auto auto;
+        }
+
+        .aaa{
+            width: 200px;
+            display: flex;
+        }
+        .aaa::before {
+            content: '▪︎';
+            display: block;
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="wrap">
+
+        <img src="https://picsum.photos/300/200/?random=10">
+        <a href="">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi at nam eum quia voluptate nemo deserunt eveniet, vero ipsam quod possimus maxime ut doloremque! Eligendi fuga eaque quasi. Laboriosam, inventore!</a>
+    </div>
+
+    <div class="aaa">
+
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi consequuntur hic deleniti inventore magnam dolore totam aperiam voluptates dicta officia distinctio aliquam iste molestiae libero asperiores ratione quos, assumenda ab!
+    </div>
+</body>
+</html>

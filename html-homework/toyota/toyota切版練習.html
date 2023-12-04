@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        section {
+            width: 1200px;
+            margin: 100px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title {
+            position: relative;
+            z-index: 10;
+            /* left: -100px; */
+        }
+        h2 {
+            background-color: red;
+            font-size: 4rem;
+            font-weight: 400;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        h2 span {
+            writing-mode: vertical-rl;
+            display: inline-block;
+            font-family: "Noto Sans","Microsoft JhengHei";
+            font-size: 8rem;
+            text-align: center;
+            line-height: .8em;
+            font-weight: 400;
+        }
+        .subtitle {
+            background-color: #000;
+            color: white;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 18px;
+            letter-spacing: 2px;
+        }
+        .subtitle h3 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .pic-part {
+            display:  flex;
+            align-items: center;
+            position: relative;
+            /* left: 150px; */
+        }
+        .pic-part::before {
+            content: '▶';
+            color: white;
+            background-color: rgb(255, 0, 0);
+            text-align: center;
+            width: 3.8rem;
+            line-height: 2.4rem;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            z-index: 2;
+        }
+        .pic-part::after {
+            position: absolute;
+            content: '';
+            display: block;
+            width: 360px;
+            height: 270px;
+            background-color: #55555510;
+            top: -80px;
+        }
+        .pic-part img {
+            vertical-align: bottom;
+            width: 740px;
+            height: 450px;
+            position: relative;
+            z-index: 1;
+        }
+        .intro {
+            width: 640px;
+            box-sizing: border-box;
+            background-color: antiquewhite;
+            padding: 20px;
+            position: relative;
+            top: -30px;
+            z-index: 10;
+        }
+        .intro > p {
+            color: red;
+            width: 100%;
+            font-weight: 900;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .intro > p::after{
+            content: '';
+            display: block;
+            border: 1px solid red;
+            flex: 1;
+            margin-left: 10px;
+        }
+        .text .feature {
+            width: fit-content;
+            padding: 3px 6px;
+            border-radius: 3px;
+            color: white;
+            background-color: black;
+        }
+        .detail {
+            display: flex;
+            margin-left: .5em;
+            padding: 5px;
+            color: #555;
+        }
+        .detail::before {
+            content: '▪︎';
+            line-height: 1.2rem;
+            font-size: 12px;
+            color: rgb(154, 2, 2);
+            display: block;
+            padding-right: 5px;
+        }
+        
+        section:nth-child(odd) .title{
+            left: -200px;
+        }
+        section:nth-child(odd) h2 {
+            padding-right: 15px;
+        }
+        section:nth-child(odd) .pic-part{
+            flex-direction: row-reverse;
+            right: -150px;
+        }
+        section:nth-child(odd) .pic-part::before {
+            transform: translateX(-80%);
+        }
+        section:nth-child(odd) .intro {
+            left: -50px;
+        }
+        
+        section:nth-child(even) .title{
+            right: -200px;
+        }
+        section:nth-child(even) h2 {
+            flex-direction: row-reverse;
+            padding-left: 15px;
+        }
+        section:nth-child(even) .pic-part{
+            flex-direction: row;
+            left: -150px;
+        }
+        section:nth-child(even) .pic-part::after {
+            width: 600px;
+            height: 350px;
+            right: -80px;
+        }
+        section:nth-child(even) .pic-part::before {
+            transform: translateX(80%);
+        }
+        section:nth-child(even) .intro {
+            right: -100px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+
+        <div class="title">
+            <h2>
+                <span>01</span>
+                操控樂趣
+            </h2>
+            <div class="subtitle">
+                <h3>人人滿意的駕駛體驗</h3>
+                透過最佳重量分配，實現平順起步、直線加速穩定，過彎時同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳聘的行駛快感。
+            </div>
+        </div>
+
+        <a class="pic-part">
+            <div class="product-img">
+                <img src="https://picsum.photos/700/500/?random=10">
+            </div>
+        </a>
+
+        <div class="intro">
+            <p>因為我們做了這些革新</p>
+            <div class="text-area">
+                <div class="text">
+                    <p class="feature">低重心設計</p>
+                    <p class="detail">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身傾斜，保持高速行駛的穩定。</p>
+                </div>
+                <div class="text">
+                    <p class="feature">車體剛性結構</p>
+                    <p class="detail">車身結構採用超高強度鋼材，提高車輛穩定性，同時藉由雷射強化焊接技術，大幅增加焊點數量，提升車身抗扭剛性，強化駕馭穩定性及安全性。</p>
+                </div>
+                <div class="text">
+                    <p class="feature">四輪獨立懸吊</p>
+                    <p class="detail">搭載全新四輪獨立懸吊設定，透過懸吊的高承載強度，保持輪胎抓地力，同時兼顧轉向靈敏度與清晰路感回饋，提升駕馭樂趣。</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section>
+
+        <div class="title">
+            <h2>
+                <span>02</span>
+                操控樂趣
+            </h2>
+            <div class="subtitle">
+                <h3>人人滿意的駕駛體驗</h3>
+                透過最佳重量分配，實現平順起步、直線加速穩定，過彎時同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳聘的行駛快感。
+            </div>
+        </div>
+
+        <a class="pic-part">
+            <div class="product-img">
+                <img src="https://picsum.photos/700/500/?random=11">
+            </div>
+        </a>
+
+        <div class="intro">
+            <p>因為我們做了這些革新</p>
+            <div class="text-area">
+                <div class="text">
+                    <p class="feature">低重心設計</p>
+                    <p class="detail">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身傾斜，保持高速行駛的穩定。</p>
+                </div>
+                <div class="text">
+                    <p class="feature">車體剛性結構</p>
+                    <p class="detail">車身結構採用超高強度鋼材，提高車輛穩定性，同時藉由雷射強化焊接技術，大幅增加焊點數量，提升車身抗扭剛性，強化駕馭穩定性及安全性。</p>
+                </div>
+                <div class="text">
+                    <p class="feature">四輪獨立懸吊</p>
+                    <p class="detail">搭載全新四輪獨立懸吊設定，透過懸吊的高承載強度，保持輪胎抓地力，同時兼顧轉向靈敏度與清晰路感回饋，提升駕馭樂趣。</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section>
+
+        <div class="title">
+            <h2>
+                <span>03</span>
+                操控樂趣
+            </h2>
+            <div class="subtitle">
+                <h3>人人滿意的駕駛體驗</h3>
+                透過最佳重量分配，實現平順起步、直線加速穩定，過彎時同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳聘的行駛快感。
+            </div>
+        </div>
+
+        <a class="pic-part">
+            <div class="product-img">
+                <img src="https://picsum.photos/700/500/?random=12">
+            </div>
+        </a>
+
+        <div class="intro">
+            <p>因為我們做了這些革新</p>
+            <div class="text-area">
+                <div class="text">
+                    <p class="feature">低重心設計</p>
+                    <p class="detail">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身傾斜，保持高速行駛的穩定。</p>
+                </div>
+                <div class="text">
+                    <p class="feature">車體剛性結構</p>
+                    <p class="detail">車身結構採用超高強度鋼材，提高車輛穩定性，同時藉由雷射強化焊接技術，大幅增加焊點數量，提升車身抗扭剛性，強化駕馭穩定性及安全性。</p>
+                </div>
+                <div class="text">
+                    <p class="feature">四輪獨立懸吊</p>
+                    <p class="detail">搭載全新四輪獨立懸吊設定，透過懸吊的高承載強度，保持輪胎抓地力，同時兼顧轉向靈敏度與清晰路感回饋，提升駕馭樂趣。</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>
