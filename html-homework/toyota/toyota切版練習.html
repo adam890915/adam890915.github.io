@@ -119,7 +119,7 @@
             color: white;
             background-color: black;
         }
-        .detail {
+        /* .detail {
             display: flex;
             margin-left: .5em;
             padding: 5px;
@@ -132,6 +132,17 @@
             color: rgb(154, 2, 2);
             display: block;
             padding-right: 5px;
+        } */
+        .detail {
+            padding-left: 1em;
+            text-indent: -1em;
+        }
+        .detail::before {
+            content: '▪︎';
+            display: inline-block;
+            width: 1em;
+            text-indent: 0;
+            text-align: center;
         }
         
         section:nth-child(odd) .title{
