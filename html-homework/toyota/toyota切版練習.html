@@ -19,7 +19,6 @@
         .title {
             position: relative;
             z-index: 10;
-            /* left: -100px; */
         }
         h2 {
             background-color: red;
@@ -56,7 +55,6 @@
             display:  flex;
             align-items: center;
             position: relative;
-            /* left: 150px; */
         }
         .pic-part::before {
             content: '▶';
@@ -77,8 +75,12 @@
             height: 270px;
             background-color: #55555510;
             top: -80px;
+            right: -40px;
         }
-        .pic-part img {
+        .product-img{
+            margin: 0 -40px;
+        }
+        .product-img img {
             vertical-align: bottom;
             width: 740px;
             height: 450px;
@@ -106,7 +108,7 @@
         .intro > p::after{
             content: '';
             display: block;
-            border: 1px solid red;
+            border-top: 1px solid red;
             flex: 1;
             margin-left: 10px;
         }
@@ -142,9 +144,6 @@
             flex-direction: row-reverse;
             right: -150px;
         }
-        section:nth-child(odd) .pic-part::before {
-            transform: translateX(-80%);
-        }
         section:nth-child(odd) .intro {
             left: -50px;
         }
@@ -163,10 +162,7 @@
         section:nth-child(even) .pic-part::after {
             width: 600px;
             height: 350px;
-            right: -80px;
-        }
-        section:nth-child(even) .pic-part::before {
-            transform: translateX(80%);
+            right: -120px;
         }
         section:nth-child(even) .intro {
             right: -100px;
