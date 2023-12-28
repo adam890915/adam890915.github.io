@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous">
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-weight: 600;
+        }
+        .wrap{
+            width: 500px;
+            margin: auto;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="wrap my-3">
+            <div class="btn-group w-100" role="group"
+                aria-label="Basic outlined example">
+                <button type="button" id="start-btn" 
+                    class="btn btn-outline-secondary text-dark fw-bold">開始</button>
+                <button type="button" id="reset-btn" disabled="true"
+                    class="btn btn-outline-secondary text-dark fw-bold">放棄重來</button>
+                <button type="button" id="hint-btn" disabled="true"
+                    class="btn btn-outline-secondary text-dark fw-bold">看答案</button>
+            </div>
+            <div class="input-group input-group w-100 my-3">
+                <span class="input-group-text"
+                    id="inputGroup-sizing-lg">猜答案</span>
+                <input type="text" class="form-control" id="guess-input" disabled
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-lg">
+                <button type="button" id="guess-btn" disabled="true"
+                    class="btn btn-outline-dark px-5">猜!</button>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item d-flex p-3">
+                    <p
+                        class="m-0 p-1 px-2 bg-success text-white flex-grow-0 rounded">4A0B</p>
+                    <p class="m-0 p-1 rounded">4321</p>
+                </li>
+                <li class="list-group-item d-flex p-3">
+                    <p
+                        class="m-0 p-1 px-2 bg-danger text-white flex-grow-0 rounded">2A2B</p>
+                    <p class="m-0 p-1 rounded">1324</p>
+                </li>
+            </ul>
+        </div>
+
+        <script>
+            const startBtn = document.querySelector('#start-btn');
+            startBtn.addEventListener('click', resetGameState);
+
+            const resetBtn = document.querySelector('#reset-btn');
+            resetBtn.addEventListener('click', resetGameState)
+
+            const hintBtn = document.querySelector('#hint-btn');
+            hintBtn.addEventListener('click', hintAnswer);
+
+            const guessBtn = document.querySelector('#guess-btn');
+            guessBtn.addEventListener('click', guessButtonOnClick);
+
+            const guessInput = document.querySelector('#guess-input')
+            guessInput.addEventListener('keypress', (e)=>{
+                if(e.key == "Enter") guessButtonOnClick();
+            })
+            
+            const ul = document.querySelector('ul');
+            let answer;
+
+            //重設遊戲
+            function resetGameState() {
+                answer = generateUniqueRandomNumbers();
+                initGameState()
+                while(ul.firstChild){
+                    ul.removeChild(ul.firstChild);
+                }
+            }
+
+            //初始化狀態
+            function initGameState(){
+                const allBtn = document.querySelectorAll('button');
+                for(const b of allBtn){
+                    b.removeAttribute('disabled')
+                }
+                guessInput.removeAttribute('disabled')
+                startBtn.setAttribute('disabled','true')
+            }
+
+            //顯示答案
+            function hintAnswer(){
+                alert(answer.join(''))
+            }
+
+            //猜按鈕主程式
+            function guessButtonOnClick(){
+                let input = checkInput(guessInput.value)
+                guessInput.value = ''
+                if(!input) return;
+                let ressult = checkAnswer(input)
+                appendRecord(ressult[0],ressult[1],input)
+            }
+
+            //新增紀錄
+            function appendRecord(countA, countB, input){
+                const li = document.createElement('li')
+                let color = 'danger';
+                if (countA == 4){
+                    color = 'success'
+                    alert('恭喜過關')
+                    hintBtn.setAttribute('disabled', 'true')
+                    guessBtn.setAttribute('disabled', 'true')
+                }
+
+                li.setAttribute('class', 'list-group-item d-flex p-3')
+                li.innerHTML = `<p class="m-0 p-1 px-2 bg-${color} text-white flex-grow-0 rounded">
+                                    ${countA}A${countB}B
+                                </p>
+                                <p class="m-0 p-1 rounded">${input.join('')}</p>`
+                ul.prepend(li)
+            }
+
+            //確認答案
+            function checkAnswer(input){
+                let a = 0, b = 0;
+                for(let i = 0; i < 4; i++){
+                    if(input[i] == answer[i])
+                        a++
+                    else if(answer.includes(parseInt(input[i])))
+                        b++
+                }
+                return [a,b]
+            }
+
+            //確認輸入格式是否正確;return char[4] or false
+            function checkInput(input){
+                if(/^\d{4}$/.test(input)){
+                    let numArray = Array.from(input)
+                    //判斷是否數字重複
+                    const i = new Set(numArray);
+                    if(numArray.length == i.size){
+                        return numArray
+                    }
+                }
+                alert('格式錯誤')
+                return false
+            }
+
+            //生成隨機4個數字--byChatGPT
+            function generateUniqueRandomNumbers() {
+                var uniqueRandomNumbers = [];
+                var maxNumber = 9; // 設定最大數字範圍
+
+                // 生成所有可能的數字
+                var allNumbers = Array.from({ length: maxNumber }, (_, index) => index + 1);
+
+                // 洗牌算法的變形，只取前四個
+                for (var i = 0; i < 4; i++) {
+                    var randomIndex = Math.floor(Math.random() * allNumbers.length);
+                    var randomNumber = allNumbers.splice(randomIndex, 1)[0];
+                    uniqueRandomNumbers.push(randomNumber);
+                }
+
+                return uniqueRandomNumbers;
+            }
+        </script>
+    </body>
+</html>
