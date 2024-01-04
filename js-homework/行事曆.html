@@ -215,7 +215,7 @@
                 ChangeTitle()
             })
             document.querySelector('#reset-btn').addEventListener('click', ()=>{
-                localStorage.clear()
+                localStorage.removeItem('item');
                 toDoList = [];
                 [...document.querySelectorAll('.date > div')].map(node => RemoveAllChild(node))
                 alert('Reseted')
