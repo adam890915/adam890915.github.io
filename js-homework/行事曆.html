@@ -202,9 +202,6 @@
             const work_input = document.querySelector('#work-input')
             const save_btn = document.querySelector('#save-btn')
 
-            SetCalender()
-            ChangeTitle()
-
             switch_month_btns[0].addEventListener('click', ChangeMonth.bind(null, -1));
             switch_month_btns[1].addEventListener('click', ChangeMonth.bind(null, 1));
             save_btn.addEventListener('click', AddToDoList);
@@ -219,6 +216,10 @@
                 toDoList = [];
                 [...document.querySelectorAll('.date > div')].map(node => RemoveAllChild(node))
                 alert('Reseted')
+            })
+            window.addEventListener('load', function(){
+                SetCalender()
+                ChangeTitle()
             })
 
             function ChangeMonth(n){
