@@ -1,138 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>代辦清單</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <style>
-      .wrap {
-        margin: 20px auto;
-        width: 600px;
-      }
-      li {
-        border: 1px rgba(128, 128, 128, 0.281) solid;
-        padding: 20px;
-        border-radius: 8px;
-        list-style: none;
-        display: flex;
-      }
-      li > button {
-        width: 18%;
-        min-width: min-content;
-        margin-left: 10px;
-      }
-      li + li {
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <h1 class="text-center">代辦清單</h1>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Description for new task..." id="new-input" />
-        <button class="btn btn-primary" type="button" id="new-btn">New Task</button>
-      </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>代辦清單</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <style>
+            .wrap {
+                margin: 20px auto;
+                width: 600px;
+            }
+            li {
+                border: 1px rgba(128, 128, 128, 0.281) solid;
+                padding: 20px;
+                border-radius: 8px;
+                list-style: none;
+                display: flex;
+            }
+            li > button {
+                width: 18%;
+                min-width: min-content;
+                margin-left: 10px;
+            }
+            li + li {
+                margin-top: 10px;
+            }
+        </style>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3MBQR5M9CF"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
 
-      <ul class="p-0">
-        <template id="li-template">
-          <li>
-            <div class="input-group">
-              <div class="input-group-text">
-                <input class="form-check-input mt-0" type="checkbox" />
-              </div>
-              <input type="text" class="form-control" value="" disabled />
+            gtag("config", "G-3MBQR5M9CF");
+        </script>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1 class="text-center">代辦清單</h1>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Description for new task..." id="new-input" />
+                <button class="btn btn-primary" type="button" id="new-btn">New Task</button>
             </div>
-            <button class="btn btn-warning" type="button">Edit</button>
-            <button class="btn btn-success d-none" type="button">Save</button>
-            <button class="btn btn-danger" type="button">Delete</button>
-          </li>
-        </template>
-      </ul>
-    </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      // let data = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
-      let data = JSON.parse(localStorage.getItem("data")) || [];
-      const newInput = document.querySelector("#new-input");
-      const newBtn = document.querySelector("#new-btn");
-      const ul = document.querySelector("ul");
-      const templateContent = document.querySelector("#li-template").content;
+            <ul class="p-0">
+                <template id="li-template">
+                    <li>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <input class="form-check-input mt-0" type="checkbox" />
+                            </div>
+                            <input type="text" class="form-control" value="" disabled />
+                        </div>
+                        <button class="btn btn-warning" type="button">Edit</button>
+                        <button class="btn btn-success d-none" type="button">Save</button>
+                        <button class="btn btn-danger" type="button">Delete</button>
+                    </li>
+                </template>
+            </ul>
+        </div>
 
-      newBtn.addEventListener("click", () => {
-        let newData = {
-          id: "id-" + new Date().getTime().toString(),
-          checked: false,
-          text: newInput.value,
-        };
-        AddNewList(newData);
-        data.push(newData);
-        SetLocalStorage();
-        newInput.value = "";
-      });
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            // let data = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
+            let data = JSON.parse(localStorage.getItem("data")) || [];
+            const newInput = document.querySelector("#new-input");
+            const newBtn = document.querySelector("#new-btn");
+            const ul = document.querySelector("ul");
+            const templateContent = document.querySelector("#li-template").content;
 
-      window.addEventListener("load", function () {
-        data.forEach((obj) => {
-          AddNewList(obj);
-        });
-      });
+            newBtn.addEventListener("click", () => {
+                let newData = {
+                    id: "id-" + new Date().getTime().toString(),
+                    checked: false,
+                    text: newInput.value,
+                };
+                AddNewList(newData);
+                data.push(newData);
+                SetLocalStorage();
+                newInput.value = "";
+            });
 
-      function AddNewList(obj) {
-        const newList = templateContent.cloneNode(true).querySelector("li");
-        newList.setAttribute("id", `${obj["id"]}`);
-        newList.querySelector("input.form-control").setAttribute("value", `${obj["text"]}`);
-        newList.querySelector(".btn-warning").addEventListener("click", Edit.bind(null, newList));
-        newList.querySelector(".btn-success").addEventListener("click", Save.bind(null, newList));
-        newList.querySelector(".btn-danger").addEventListener("click", Delete.bind(null, newList));
+            window.addEventListener("load", function () {
+                data.forEach((obj) => {
+                    AddNewList(obj);
+                });
+            });
 
-        const checkbox = newList.querySelector(".form-check-input");
-        if (obj["checked"]) checkbox.setAttribute("checked", "true");
-        checkbox.addEventListener("change", () => {
-          for (let o of data) {
-            if (o["id"] == newList.id) o["checked"] = checkbox.checked;
-          }
-          SetLocalStorage();
-        });
+            function AddNewList(obj) {
+                const newList = templateContent.cloneNode(true).querySelector("li");
+                newList.setAttribute("id", `${obj["id"]}`);
+                newList.querySelector("input.form-control").setAttribute("value", `${obj["text"]}`);
+                newList.querySelector(".btn-warning").addEventListener("click", Edit.bind(null, newList));
+                newList.querySelector(".btn-success").addEventListener("click", Save.bind(null, newList));
+                newList.querySelector(".btn-danger").addEventListener("click", Delete.bind(null, newList));
 
-        ul.append(newList);
-      }
+                const checkbox = newList.querySelector(".form-check-input");
+                if (obj["checked"]) checkbox.setAttribute("checked", "true");
+                checkbox.addEventListener("change", () => {
+                    for (let o of data) {
+                        if (o["id"] == newList.id) o["checked"] = checkbox.checked;
+                    }
+                    SetLocalStorage();
+                });
 
-      function Edit(li) {
-        li.querySelector(".form-control").removeAttribute("disabled");
-        li.querySelector(".btn-warning").classList.add("d-none");
-        li.querySelector(".btn-success").classList.remove("d-none");
-      }
+                ul.append(newList);
+            }
 
-      function Save(li) {
-        for (let obj of data) {
-          if (obj["id"] == li.id) obj["text"] = li.querySelector(".form-control").value;
-        }
-        SetLocalStorage();
-        li.querySelector(".form-control").setAttribute("disabled", "true");
-        li.querySelector(".btn-warning").classList.remove("d-none");
-        li.querySelector(".btn-success").classList.add("d-none");
-      }
+            function Edit(li) {
+                li.querySelector(".form-control").removeAttribute("disabled");
+                li.querySelector(".btn-warning").classList.add("d-none");
+                li.querySelector(".btn-success").classList.remove("d-none");
+            }
 
-      function Delete(li) {
-        data = data.filter((obj) => obj["id"] !== li.id);
-        SetLocalStorage();
-        li.parentNode.removeChild(li);
-      }
+            function Save(li) {
+                for (let obj of data) {
+                    if (obj["id"] == li.id) obj["text"] = li.querySelector(".form-control").value;
+                }
+                SetLocalStorage();
+                li.querySelector(".form-control").setAttribute("disabled", "true");
+                li.querySelector(".btn-warning").classList.remove("d-none");
+                li.querySelector(".btn-success").classList.add("d-none");
+            }
 
-      function SetLocalStorage() {
-        localStorage.setItem("data", JSON.stringify(data));
-      }
-    </script>
-  </body>
+            function Delete(li) {
+                data = data.filter((obj) => obj["id"] !== li.id);
+                SetLocalStorage();
+                li.parentNode.removeChild(li);
+            }
+
+            function SetLocalStorage() {
+                localStorage.setItem("data", JSON.stringify(data));
+            }
+        </script>
+    </body>
 </html>
